@@ -1,0 +1,95 @@
+//
+//  SettingsViewController.swift
+//  TippingCalculator
+//
+//  Created by Sarah Garrow on 12/14/15.
+//  Copyright © 2015 Sarah Garrow. All rights reserved.
+//
+
+import UIKit
+
+class SettingsViewController: UIViewController {
+
+    @IBOutlet weak var poorTipControl: UITextField!
+    @IBOutlet weak var satisfactoryTipControl: UITextField!
+    @IBOutlet weak var excellentTipControl: UITextField!
+    
+    //var poorTip: String = "15"
+    //var satisfactoryTip: String = "20"
+    //var excellentTip: String = "25"
+    
+    //var titleSegment1: String!
+    //var titleSegment2: String!
+    //var titleSegment3: String!
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    
+    //var prefs = NSUserDefaults.standardUserDefaults()
+    
+    //var poorValue = prefs.objectForKey("poorTip") as! String
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //poorTipControl.text = poorTip
+        //satisfactoryTipControl.text = satisfactoryTip
+        //excellentTipControl.text = excellentTip
+        //poorTip = poorTipControl.text!
+        //satisfactoryTip = satisfactoryTipControl.text!
+        //excellentTip = excellentTipControl.text!
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onEdit1(sender: AnyObject) {
+        //poorTip = poorTipControl.text!
+        //print("\(poorTip)")
+        //prefs.setValue(poorTip, forKey:poorTip)
+        defaults.setObject(poorTipControl.text, forKey:"default_poor_tip_percentage")
+        defaults.synchronize()
+    }
+    
+    
+    @IBAction func onEdit2(sender: AnyObject) {
+        //satisfactoryTip = satisfactoryTipControl.text!
+        defaults.setObject(satisfactoryTipControl.text, forKey:"default_okay_tip_percentage")
+        defaults.synchronize()
+    }
+    
+    @IBAction func onEdit3(sender: AnyObject) {
+        //excellentTip = excellentTipControl.text!
+        defaults.setObject(excellentTipControl.text, forKey:"default_good_tip_percentage")
+        defaults.synchronize()
+    }
+    
+    
+    
+    
+    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //var DestViewController: ViewController = segue.destinationViewController as! ViewController
+        
+        //DestViewController.titleSegment1 = poorTip
+        //DestViewController.titleSegment2 = satisfactoryTip
+        //DestViewController.titleSegment3 = excellentTip
+       
+        
+    //}
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
