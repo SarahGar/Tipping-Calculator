@@ -38,7 +38,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I have very little coding experience. I took a basic programming course a couple years ago and learned some C++. The tutorial was very nice in setting up the basic functionality of the tipping calculator. I spent most of my time working to get the Setting View Control to pass data to the View Controller . I did a lot of googling to help me, but went down the wrong path. I thought I needed to use prepareForSegue to pass information. I emailed Charlie Hielger and he informed me that I needed to use NSUserDefaults. Once I had this information I was able to do more researching and successfully implement this in my code. I added an additional feature that would allow the user to input the number of people to split a bil.
+I have very little coding experience. I took a basic programming course a couple years ago and learned some C++. The tutorial for the tipping calculator was very nice in setting up the basic functionality of the tipping calculator. I spent most of my time working to get the Setting View Control to pass data to the View Controller . I did a lot of googling to help me, but went down the wrong path. I thought I needed to use prepareForSegue to pass information. I emailed Charlie Hielger and he informed me that I needed to use NSUserDefaults. Once I had this information I was able to do more researching and successfully implement this in my code. I added an additional feature that would allow the user to input the number of people to split a bil.
 
 ## License
 
