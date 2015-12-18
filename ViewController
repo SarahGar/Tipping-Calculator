@@ -1,0 +1,110 @@
+//
+//  ViewController.swift
+//  TippingCalculator
+//
+//  Created by Sarah Garrow on 12/14/15.
+//  Copyright © 2015 Sarah Garrow. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var billField: UITextField!
+    @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var peopleField: UITextField!
+    @IBOutlet weak var splitTotalLabel: UILabel!
+    
+    var total : Double = 0.0
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let poorTip = defaults.stringForKey("default_poor_tip_percentage")
+        let okayTip = defaults.stringForKey("default_okay_tip_percentage")
+        let goodTip = defaults.stringForKey("default_good_tip_percentage")
+        
+        tipControl.setTitle(poorTip!+"%", forSegmentAtIndex:0)
+        tipControl.setTitle(okayTip!+"%", forSegmentAtIndex:1)
+        tipControl.setTitle(goodTip!+"%", forSegmentAtIndex:2)
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        tipLabel.text = "$0.00"
+        totalLabel.text = "$0.00"
+        splitTotalLabel.text = ""
+        //titleSegment1 = tipControl.titleForSegmentAtIndex(0)!
+        //titleSegment2 = tipControl.titleForSegmentAtIndex(1)!
+        //titleSegment3 = tipControl.titleForSegmentAtIndex(2)!
+        //print("\(titleSegment1)")
+        //print("\(titleSegment2)")
+        //tipControl.setTitle("29%", forSegmentAtIndex:0)
+        
+        //tipControl.setTitle(titleSegment1, forSegmentAtIndex:0)
+        //tipControl.setTitle(titleSegment2, forSegmentAtIndex:1)
+        //tipControl.setTitle(titleSegment3, forSegmentAtIndex:2)
+        
+        //print("\(tipControl.titleForSegmentAtIndex(0))")
+        
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        //tipControl.setTitle(titleSegment1, forSegmentAtIndex:0)
+        //tipControl.setTitle(titleSegment2, forSegmentAtIndex:1)
+        //tipControl.setTitle(titleSegment3, forSegmentAtIndex:2)
+        
+        
+        var tipPercentages = [tipControl.titleForSegmentAtIndex(0), tipControl.titleForSegmentAtIndex(1), tipControl.titleForSegmentAtIndex(2)]
+        //tipPercentages = tipPercentages.characters.dropLast()
+        //var truncated = String(tipPercentages.characters.dropLast())
+        //tipPercentages = [tipPercentages(0)-"%", tipPercentages(1)-"%", tipPercentages(2)-"%"]
+        //tipControl[0] = NSString(string: poorTipControl.text!).doubleValue
+        //tipControl[1] = NSString(string: satisfactoryTipControl.text!).doubleValue
+        //tipControl[2] = NSString(string: excellentTipControl.text!).doubleValue
+        var tipPercentage = NSString(string: tipPercentages[tipControl.selectedSegmentIndex]!).doubleValue
+        
+        var billAmount = NSString(string: billField.text!).doubleValue
+        var tip = (billAmount * tipPercentage)*0.01
+        total = billAmount + tip
+        
+        tipLabel.text = "$\(tip)"
+        totalLabel.text = "$\(total)"
+        
+        tipLabel.text = String(format: "$%.2f", tip)
+        totalLabel.text = String(format: "$%.2f", total)
+    }
+
+    @IBAction func onTap(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func onEditingPeople(sender: AnyObject) {
+        
+        var numberPeople = NSString(string: peopleField.text!).doubleValue
+        if numberPeople >= 1 {
+        var splitTotal = total / numberPeople
+        
+        splitTotalLabel.text = "$\(splitTotal)"
+        splitTotalLabel.text = String(format: "$%.2f", splitTotal)
+        
+        print("\(numberPeople)")
+        print("\(splitTotal)")
+        }
+        
+    }
+    
+    
+}
