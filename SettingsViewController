@@ -30,6 +30,12 @@ class SettingsViewController: UIViewController {
     //var poorValue = prefs.objectForKey("poorTip") as! String
     
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        [poorTipControl.becomeFirstResponder()]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //poorTipControl.text = poorTip
